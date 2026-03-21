@@ -57,7 +57,7 @@ export function Hero() {
             ].join(" ")}
             style={{ transitionDelay: "200ms" }}
           >
-            We handle the tech
+            We handle the tech,
           </span>
           <span
             className={[
