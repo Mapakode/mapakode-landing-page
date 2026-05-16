@@ -1,30 +1,39 @@
-import type { Metadata } from "next";
-import { Unbounded, Figtree } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Epilogue } from "next/font/google";
 import "./globals.css";
 
-const unbounded = Unbounded({
-  variable: "--font-unbounded",
+const epilogue = Epilogue({
+  variable: "--font-epilogue",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const figtree = Figtree({
-  variable: "--font-figtree",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
+const BASE_URL = "https://mapakode.com";
 
-const BASE_URL = "https://mapakode.onrender.com";
+export const viewport: Viewport = {
+  themeColor: "#0b4ed7",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
+  icons: {
+    icon: [
+      {
+        url: "/images/mapakode-dark-mode.svg",
+      },
+    ],
+    shortcut: "/images/mapakode-dark-mode.svg",
+    apple: "/apple-touch-icon.png",
+  },
+
   title: {
-    default: "MapaKode — Web & Mobile Development Agency",
+    default: "MapaKode — Software Agency",
     template: "%s | MapaKode",
   },
   description:
-    "MapaKode is an affordable web & mobile agency building landing pages, responsive websites, and iOS/Android apps. We handle the tech — you focus on growth.",
+    "MapaKode is a software agency. We handle the tech — you focus on growth.",
+
   keywords: [
     "web development",
     "mobile app development",
@@ -38,7 +47,7 @@ export const metadata: Metadata = {
     "Docker",
     "AWS",
     "Vercel",
-    "affordable web agency",
+    "affordable software agency",
     "MapaKode",
     "custom software",
     "startup development",
@@ -81,12 +90,6 @@ export const metadata: Metadata = {
       "Affordable web & mobile solutions for startups and businesses. We build fast — you grow faster.",
     images: ["/og-image.png"],
   },
-
-  icons: {
-    icon: "/mapakode.svg",
-    shortcut: "/mapakode.svg",
-    apple: "/apple-touch-icon.png",
-  },
 };
 
 export default function RootLayout({
@@ -95,8 +98,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${unbounded.variable} ${figtree.variable}`}>
-      <body className="min-h-screen flex flex-col">{children}</body>
+    <html lang="en" className={epilogue.variable} data-scroll-behavior="smooth">
+      <body className="min-h-screen flex flex-col">
+        <a href="#main" className="skip-link">
+          Skip to main content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

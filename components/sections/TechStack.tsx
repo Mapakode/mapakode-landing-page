@@ -62,8 +62,8 @@ const row2Items = [
 function TechItem({ name, Icon }: Readonly<TechEntry>) {
   return (
     <span className="flex items-center gap-2.5 px-6 group/tech">
-      <Icon className="w-4 h-4 text-[#64748b] group-hover/tech:text-[#345ec4] transition-colors duration-200 shrink-0" />
-      <span className="font-display font-semibold text-sm text-[#64748b] whitespace-nowrap group-hover/tech:text-[#345ec4] transition-colors duration-200 cursor-default">
+      <Icon className="w-4 h-4 text-muted group-hover/tech:text-accent transition-colors duration-200 shrink-0" aria-hidden="true" />
+      <span className="font-display font-semibold text-sm text-muted whitespace-nowrap group-hover/tech:text-accent transition-colors duration-200 cursor-default">
         {name}
       </span>
     </span>
@@ -74,28 +74,36 @@ export function TechStack() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.1 });
 
   return (
-    <section className="py-20 bg-white border-y border-[#e2e6ef] relative overflow-hidden">
-      <div className="mb-8 text-center" ref={ref}>
-        <p className={["text-xs text-[#64748b] tracking-widest uppercase reveal", inView ? "in-view" : ""].join(" ")}>
-          Tech Stack
-        </p>
-      </div>
-
-      {/* Row 1: left to right */}
-      <div className={["overflow-hidden mb-4 reveal delay-200", inView ? "in-view" : ""].join(" ")}>
-        <div className="flex animate-marquee" style={{ width: "max-content" }}>
-          {row1Items.map(({ name, Icon, key }) => (
-            <TechItem key={key} name={name} Icon={Icon} />
-          ))}
+    <section className="py-20 bg-background relative overflow-hidden">
+      <div className="relative">
+        {/* Left-aligned header */}
+        <div className="mb-10 px-6 max-w-7xl mx-auto" ref={ref}>
+          <p className={["text-accent text-xs font-semibold tracking-widest uppercase mb-3 flex items-center gap-2 reveal", inView ? "in-view" : ""].join(" ")}>
+            <span className="w-6 h-px bg-accent" aria-hidden="true" /> Our Stack
+          </p>
+          <h2
+            className={["font-display font-bold text-2xl md:text-3xl text-foreground leading-tight reveal delay-100", inView ? "in-view" : ""].join(" ")}
+          >
+            Tools we ship with.
+          </h2>
         </div>
-      </div>
 
-      {/* Row 2: right to left */}
-      <div className={["overflow-hidden reveal delay-300", inView ? "in-view" : ""].join(" ")}>
-        <div className="flex animate-marquee-reverse" style={{ width: "max-content" }}>
-          {row2Items.map(({ name, Icon, key }) => (
-            <TechItem key={key} name={name} Icon={Icon} />
-          ))}
+        {/* Row 1: left to right */}
+        <div className={["overflow-hidden mb-4 reveal delay-200", inView ? "in-view" : ""].join(" ")}>
+          <div className="flex animate-marquee" style={{ width: "max-content" }}>
+            {row1Items.map(({ name, Icon, key }) => (
+              <TechItem key={key} name={name} Icon={Icon} />
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2: right to left */}
+        <div className={["overflow-hidden reveal delay-300", inView ? "in-view" : ""].join(" ")}>
+          <div className="flex animate-marquee-reverse" style={{ width: "max-content" }}>
+            {row2Items.map(({ name, Icon, key }) => (
+              <TechItem key={key} name={name} Icon={Icon} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

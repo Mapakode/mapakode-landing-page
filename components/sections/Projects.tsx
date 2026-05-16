@@ -3,78 +3,130 @@
 import { useInView } from "@/hooks/useInView";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 const projects = [
   {
     name: "Fillr",
-    subtitle: "AI-powered creative supernetwork. Freelancing made fast, fair, and easy  for Filipino freelancers.",
+    subtitle:
+      "AI-powered creative supernetwork. Freelancing made fast, fair, and easy for Filipino freelancers.",
     tags: ["AI", "Freelancing", "Marketplace", "Matchmaking"],
     link: "https://fillr.work",
-  }
+    index: "01",
+  },
 ];
 
 export function Projects() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.05 });
 
   return (
-    <section id="projects" className="py-28 px-6 bg-white">
-      <div className="max-w-7xl mx-auto" ref={ref}>
+    <section
+      id="projects"
+      className="py-28 px-6 bg-surface relative overflow-hidden"
+    >
+      {/* Dot-grid */}
+      <div
+        className="hero-dot-grid absolute inset-0 opacity-50"
+        aria-hidden="true"
+      />
+      {/* Blue radial — top right */}
+      <div
+        className="absolute -top-40 -right-40 w-175 h-175 rounded-full pointer-events-none opacity-55"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(11,78,215,0.6) 0%, transparent 70%)",
+        }}
+        aria-hidden="true"
+      />
 
+      <div className="relative max-w-7xl mx-auto" ref={ref}>
         <div className="mb-16">
-          <p className={["text-[#345ec4] text-xs font-semibold tracking-widest uppercase mb-4 flex items-center gap-2 reveal", inView ? "in-view" : ""].join(" ")}>
-            <span className="w-6 h-px bg-[#345ec4]" /> Featured Work
-          </p>
-          <h2
+          <p
             className={[
-              "font-display font-bold text-[clamp(2rem,5vw,3.25rem)] leading-tight text-[#0d1117] reveal",
+              "text-accent text-xs font-semibold tracking-widest uppercase mb-4 flex items-center gap-2 reveal",
               inView ? "in-view" : "",
             ].join(" ")}
           >
-            Projects We&apos;re Proud Of.
+            <span className="w-6 h-px bg-accent" aria-hidden="true" /> Featured
+            Work
+          </p>
+          <h2
+            className={[
+              "font-display font-black text-[clamp(2.5rem,5vw,3.75rem)] leading-[1.02] text-foreground reveal delay-100",
+              inView ? "in-view" : "",
+            ].join(" ")}
+          >
+            Projects We&apos;ve{" "}
+            <span
+              style={{
+                background:
+                  "linear-gradient(120deg, var(--accent) 0%, var(--accent-dim) 50%, var(--accent-sky) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Built.
+            </span>
           </h2>
         </div>
 
         <div className="flex flex-col">
           {projects.map((project, i) => (
-            <a
+            <Link
               key={project.name}
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/projects/fillr"
               className={[
-                "group relative flex flex-col sm:flex-row sm:items-center justify-between gap-6 py-8 border-b border-[#e2e6ef] cursor-pointer reveal",
+                "group relative flex flex-col sm:flex-row sm:items-center justify-between gap-6 py-10 border-b border-border cursor-pointer reveal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface rounded-sm",
                 i === 0 ? "border-t" : "",
                 inView ? "in-view" : "",
                 i === 0 ? "delay-100" : "delay-200",
               ].join(" ")}
             >
               <div className="flex items-center gap-8">
-                <div>
-                  <h3 className="font-display font-bold text-xl text-[#0d1117] mb-1 group-hover:text-[#345ec4] transition-colors duration-200">
+<div>
+                  <h3 className="font-display font-bold text-xl text-foreground mb-1 group-hover:text-accent transition-colors duration-200">
                     {project.name}
                   </h3>
-                  <p className="text-[#64748b] text-sm">{project.subtitle}</p>
+                  <p className="text-muted text-sm mb-3">{project.subtitle}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <Badge
+                        key={tag}
+                        className="bg-background text-muted border border-border text-xs font-normal rounded-full px-3 group-hover:border-accent/30 group-hover:text-accent transition-colors duration-200"
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-6 sm:shrink-0">
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      className="bg-[#f7f9fc] text-[#64748b] border border-[#e2e6ef] text-xs font-normal rounded-full px-3 group-hover:border-[#345ec4]/30 group-hover:text-[#345ec4] transition-colors duration-200"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-                <div className="w-9 h-9 rounded-full border border-[#e2e6ef] flex items-center justify-center shrink-0 group-hover:border-[#345ec4] group-hover:bg-[#345ec4] transition-all duration-200">
-                  <ArrowUpRight className="w-4 h-4 text-[#64748b] group-hover:text-white transition-colors duration-200" />
-                </div>
-              </div>
-            </a>
+              <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-border text-xs font-semibold text-muted shrink-0 group-hover:border-accent group-hover:text-accent group-hover:bg-accent/5 transition-all duration-200">
+                Case Study
+                <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+              </span>
+            </Link>
           ))}
         </div>
+
+        {/* Bottom CTA */}
+        {/* <div
+          className={[
+            "mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 p-8 rounded-2xl border border-border bg-surface/60 backdrop-blur-sm reveal delay-300",
+            inView ? "in-view" : "",
+          ].join(" ")}
+        >
+          <div>
+            <p className="font-display font-bold text-foreground text-lg">Have a project in mind?</p>
+            <p className="text-muted text-sm mt-1">Let&apos;s build something great together.</p>
+          </div>
+          <Link href="/#contact">
+            <Button className="h-11 px-8 rounded-full bg-accent text-white font-semibold text-sm hover:bg-accent-dim transition-all duration-200 shadow-lg shadow-accent/20 hover:shadow-accent/30 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background shrink-0">
+              Book a Free Call
+            </Button>
+          </Link>
+        </div> */}
       </div>
     </section>
   );

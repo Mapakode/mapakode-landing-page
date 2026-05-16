@@ -3,11 +3,11 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0d1117;
+  --foreground: #0c1935;
   --muted: #64748b;
-  --accent: #345ec4;
-  --accent-dim: #46a9fb;
-  --accent-sky: #6cd4fe;
+  --accent: #0b4ed7;
+  --accent-dim: #0082fd;
+  --accent-sky: #31c1c3;
   --surface: #f7f9fc;
   --surface-2: #eef2f8;
   --border: #e2e6ef;
@@ -25,6 +25,7 @@
   --destructive: #dc2626;
   --input: var(--surface-2);
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -47,8 +48,8 @@
   --color-destructive: var(--destructive);
   --color-input: var(--input);
 
-  --font-sans: var(--font-figtree);
-  --font-display: var(--font-unbounded);
+  --font-sans: var(--font-epilogue);
+  --font-display: var(--font-epilogue);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -71,16 +72,37 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-figtree), sans-serif;
+  font-family: var(--font-epilogue), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
+/* ─── Skip to content ────────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #ffffff;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
 /* ─── Typography helpers ─────────────────────────────── */
 
 .font-display {
-  font-family: var(--font-unbounded), sans-serif;
+  font-family: var(--font-epilogue), sans-serif;
 }
 
 .text-accent {
@@ -99,6 +121,56 @@ body {
   to   { transform: translateX(0); }
 }
 
+@keyframes float-chip {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.85); }
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chip-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes nav-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes chip-bounce-in {
+  0%   { opacity: 0; transform: scale(0.72) translateY(18px); }
+  55%  { opacity: 1; transform: scale(1.07) translateY(-5px); }
+  75%  { transform: scale(0.97) translateY(2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 /* ─── Animation utility classes ──────────────────────── */
 
 .animate-marquee {
@@ -109,6 +181,45 @@ body {
   animation: marqueeReverse 30s linear infinite;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .animate-float-chip {
+    animation: float-chip 4s ease-in-out infinite;
+  }
+
+  .animate-pulse-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  .animate-hero-fade-up {
+    animation: hero-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-chip-appear {
+    animation: chip-appear 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-nav-enter {
+    animation: nav-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 150ms;
+  }
+
+  .animate-chip-bounce-in {
+    animation: chip-bounce-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+}
+
+/* Stagger delays for hero sequence */
+.delay-0   { animation-delay: 0ms; }
+.delay-100 { animation-delay: 200ms; transition-delay: 200ms; }
+.delay-150 { animation-delay: 250ms; }
+.delay-200 { animation-delay: 300ms; transition-delay: 300ms; }
+.delay-300 { animation-delay: 400ms; transition-delay: 400ms; }
+.delay-400 { animation-delay: 500ms; transition-delay: 500ms; }
+.delay-500 { animation-delay: 600ms; transition-delay: 600ms; }
+.delay-600 { animation-delay: 700ms; }
+.delay-700 { animation-delay: 800ms; }
+.delay-800 { animation-delay: 900ms; }
+
 /* ─── Scroll reveal ──────────────────────────────────── */
 
 .reveal {
@@ -116,6 +227,7 @@ body {
   transform: translateY(48px) scale(0.98);
   transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 100ms;
 }
 
 .reveal.in-view {
@@ -128,6 +240,7 @@ body {
   transform: translateX(-48px);
   transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 100ms;
 }
 
 .reveal-left.in-view {
@@ -140,6 +253,7 @@ body {
   transform: translateX(48px);
   transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 100ms;
 }
 
 .reveal-right.in-view {
@@ -151,18 +265,29 @@ body {
 .reveal-fade {
   opacity: 0;
   transition: opacity 0.8s ease;
+  transition-delay: 100ms;
 }
 
 .reveal-fade.in-view {
   opacity: 1;
 }
 
-/* Stagger delays */
-.delay-100 { transition-delay: 100ms; }
-.delay-200 { transition-delay: 200ms; }
-.delay-300 { transition-delay: 300ms; }
-.delay-400 { transition-delay: 400ms; }
-.delay-500 { transition-delay: 500ms; }
+/* Respect reduced motion for scroll reveals */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-fade {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation-play-state: paused;
+  }
+}
 
 /* ─── Card hover ─────────────────────────────────────── */
 
@@ -172,18 +297,61 @@ body {
 
 .card-lift:hover {
   border-color: var(--accent) !important;
-  box-shadow: 0 4px 20px rgba(52, 94, 196, 0.1);
+  box-shadow: 0 4px 20px rgba(11, 78, 215, 0.1);
   transform: translateY(-3px);
+}
+
+
+/* ─── Hero dot-grid background ───────────────────────── */
+
+.hero-dot-grid {
+  background-image: radial-gradient(circle, rgba(11, 78, 215, 0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+
+/* ─── Glassmorphism chip ─────────────────────────────── */
+
+.glass-chip {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 16px rgba(11, 78, 215, 0.08);
+}
+
+
+.glass-chip-hover {
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.22s ease;
+}
+
+.glass-chip-hover:hover {
+  transform: scale(1.06) translateY(-3px);
+  box-shadow: 0 10px 32px rgba(11, 78, 215, 0.2);
+}
+
+
+.glass-chip-hover:hover .chip-icon {
+  background: rgba(11, 78, 215, 0.18);
 }
 
 /* ─── Section gradient helpers ───────────────────────── */
 
-/* Soft blue radial bleed — place as an absolute child inside a section */
 .section-glow-right {
   position: absolute;
   top: 0; right: 0;
   width: 50%; height: 100%;
-  background: radial-gradient(ellipse 70% 60% at 90% 20%, rgba(70, 169, 251, 0.24), transparent);
+  background: radial-gradient(ellipse 70% 60% at 90% 20%, rgba(0, 130, 253, 0.24), transparent);
+  pointer-events: none;
+}
+
+
+.section-glow-left {
+  position: absolute;
+  top: 0; left: 0;
+  width: 50%; height: 100%;
+  background: radial-gradient(ellipse 70% 60% at 10% 80%, rgba(49, 193, 195, 0.18), transparent);
   pointer-events: none;
 }
 

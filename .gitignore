@@ -45,3 +45,7 @@ AGENTS.md
 
 # claude
 .claude
+CLAUDE.md
+
+# MD files
+*.md

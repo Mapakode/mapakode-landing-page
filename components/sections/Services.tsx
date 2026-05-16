@@ -1,25 +1,24 @@
 "use client";
 
 import { useInView } from "@/hooks/useInView";
-import { Globe, Layers, Smartphone } from "lucide-react";
 
 const services = [
   {
-    icon: Globe,
+    number: "01",
     title: "Web Development",
     description:
       "From pixel-perfect landing pages to fully responsive, performant websites that convert visitors into customers.",
     tags: ["Landing Pages", "Responsive Design", "Performance"],
   },
   {
-    icon: Layers,
+    number: "02",
     title: "Tailored Solutions",
     description:
       "Custom features, integrations, and workflows designed around the way you actually work — not the other way around.",
     tags: ["Custom Features", "API Integrations", "Automation"],
   },
   {
-    icon: Smartphone,
+    number: "03",
     title: "Mobile App Development",
     description:
       "Native and cross-platform iOS and Android apps built for speed, reliability, and a great user experience.",
@@ -31,66 +30,76 @@ export function Services() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.05 });
 
   return (
-    <section id="services" className="py-28 px-6 bg-[#f7f9fc]">
-      <div className="max-w-7xl mx-auto" ref={ref}>
-
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <div>
-            <p className={["text-[#345ec4] text-xs font-semibold tracking-widest uppercase mb-4 flex items-center gap-2 reveal", inView ? "in-view" : ""].join(" ")}>
-              <span className="w-6 h-px bg-[#345ec4]" /> What We Do
-            </p>
-            <h2
-              className={[
-                "font-display font-bold text-[clamp(2rem,5vw,3.25rem)] leading-tight text-[#0d1117] reveal",
-                inView ? "in-view" : "",
-              ].join(" ")}
-            >
-              Services Built for Results.
-            </h2>
-          </div>
+    <section
+      id="services"
+      className="py-28 px-6 bg-background relative overflow-hidden"
+    >
+      <div className="relative max-w-7xl mx-auto" ref={ref}>
+        {/* Left-aligned header */}
+        <div className="mb-16 max-w-xl">
           <p
             className={[
-              "text-[#64748b] text-sm max-w-xs leading-relaxed reveal delay-200",
+              "text-accent text-xs font-semibold tracking-widest uppercase mb-4 flex items-center gap-2 reveal",
               inView ? "in-view" : "",
             ].join(" ")}
           >
-            Every project is a collaboration. We listen, plan, and execute with precision.
+            <span className="w-6 h-px bg-accent" aria-hidden="true" /> What We Do
+          </p>
+          <h2
+            className={[
+              "font-display font-black text-[clamp(2.5rem,5vw,3.75rem)] leading-[1.02] text-foreground reveal delay-100",
+              inView ? "in-view" : "",
+            ].join(" ")}
+          >
+            Services built to ship.
+          </h2>
+          <p
+            className={[
+              "mt-4 text-muted text-sm leading-relaxed reveal delay-200",
+              inView ? "in-view" : "",
+            ].join(" ")}
+          >
+            Every project is a collaboration. We listen, plan, and execute with
+            precision.
           </p>
         </div>
 
-        {/* Service cards */}
-        <div className="grid md:grid-cols-3 gap-5">
+        {/* Service rows */}
+        <div className="flex flex-col">
           {services.map((service, i) => {
-            const Icon = service.icon;
             const delays = ["delay-100", "delay-200", "delay-300"];
             return (
               <div
                 key={service.title}
                 className={[
-                  "group p-8 rounded-xl border border-[#e2e6ef] bg-white card-lift flex flex-col gap-5 reveal",
+                  "group relative flex flex-col sm:flex-row sm:items-center gap-6 py-10 border-b border-border transition-colors duration-200 hover:bg-surface reveal",
+                  i === 0 ? "border-t" : "",
                   inView ? "in-view" : "",
                   delays[i] ?? "delay-300",
                 ].join(" ")}
+                style={{ marginLeft: "-1.5rem", marginRight: "-1.5rem", paddingLeft: "1.5rem", paddingRight: "1.5rem" }}
               >
-                <div className="w-11 h-11 rounded-lg bg-[#eef2f8] flex items-center justify-center group-hover:bg-[#345ec4]/10 transition-colors duration-200">
-                  <Icon className="w-5 h-5 text-[#345ec4]" strokeWidth={1.5} />
-                </div>
+                {/* Large typographic number */}
+                <span className="font-display font-black text-4xl text-border group-hover:text-accent/30 transition-colors duration-200 select-none shrink-0 w-14">
+                  {service.number}
+                </span>
 
-                <div className="flex-1">
-                  <h3 className="font-display font-bold text-[#0d1117] text-base mb-3">
+                {/* Title + description */}
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-display font-bold text-foreground text-lg mb-1 group-hover:text-accent transition-colors duration-200">
                     {service.title}
                   </h3>
-                  <p className="text-[#64748b] text-sm leading-relaxed">
+                  <p className="text-muted text-sm leading-relaxed">
                     {service.description}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-[#e2e6ef]">
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 sm:justify-end sm:shrink-0 sm:max-w-55">
                   {service.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs px-2.5 py-1 rounded-full border border-[#e2e6ef] text-[#64748b] group-hover:border-[#345ec4]/20 group-hover:text-[#345ec4] transition-colors duration-200"
+                      className="text-xs px-3 py-1 rounded-full border border-border text-muted group-hover:border-accent/30 group-hover:text-accent transition-colors duration-200"
                     >
                       {tag}
                     </span>

@@ -13,11 +13,13 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "MapaKode",
-  url: "https://mapakode.onrender.com",
+  url: "https://mapakode.com",
   description:
     "MapaKode is an affordable web & mobile agency building landing pages, responsive websites, and iOS/Android apps for startups and businesses.",
   email: "ivanandesramos.io@gmail.com",
-  sameAs: ["https://facebook.com/mapakode"],
+  image: "https://mapakode.com/images/mapakode-light-mode.svg",
+  foundingDate: "2024",
+  sameAs: ["https://facebook.com/mapakode", "https://github.com/mapakode"],
   serviceType: [
     "Web Development",
     "Mobile App Development",
@@ -42,23 +44,45 @@ const jsonLd = {
   priceRange: "$$",
 };
 
+function SectionDivider() {
+  return (
+    <div
+      aria-hidden="true"
+      className="w-full h-px"
+      style={{
+        background:
+          "linear-gradient(90deg, transparent 0%, var(--border) 20%, rgba(11,78,215,0.25) 50%, var(--border) 80%, transparent 100%)",
+      }}
+    />
+  );
+}
+
 export default function Home() {
   return (
-    <main>
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <Hero />
-      <About />
-      <Clients />
-      <Services />
-      <Projects />
-      <Testimonials />
-      <TechStack />
-      <Contact />
+      <main id="main">
+        <Hero />
+        <SectionDivider />
+        <About />
+        <SectionDivider />
+        <Clients />
+        <SectionDivider />
+        <Services />
+        <SectionDivider />
+        <Projects />
+        <SectionDivider />
+        <Testimonials />
+        <SectionDivider />
+        <TechStack />
+        <SectionDivider />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
