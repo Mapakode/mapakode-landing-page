@@ -10,7 +10,7 @@ const founders = [
     imageSrc: "/images/members/ivan-image.png",
     name: "Ivan Ramos",
     title: "Founder & CEO",
-    bio: "Ivan is where your journey with MapaKode begins. Driven by a passion for solving real-world problems, he handles the entire business front and strategic alignment of your project. From your very first meeting, Ivan takes full ownership of client relations, project scoping, and business strategy. Because he has absolute autonomy over pricing and project management, you get fast, decisive answers without corporate red tape. But he doesn't just strategize—Ivan also builds the underlying engine, managing the backend development to ensure that your business requirements are perfectly translated into robust, logical code. He is your champion for growth, making sure your product aligns with your market goals.",
+    bio: "Ivan is where your journey with MapaKode begins. Driven by a passion for solving real-world problems, he handles the entire business front and strategic alignment of your project. From your very first meeting, Ivan takes full ownership of client relations, project scoping, and business strategy. Because he has absolute autonomy over project management, you get fast, decisive answers without corporate red tape. But he doesn't just strategize—Ivan also builds the underlying engine, managing the backend development to ensure that your business requirements are perfectly translated into robust, logical code. He is your champion for growth, making sure your product aligns with your market goals.",
     linkedIn: "https://www.linkedin.com/in/sovanreign/",
   },
   {
