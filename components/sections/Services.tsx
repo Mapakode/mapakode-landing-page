@@ -4,21 +4,18 @@ import { useInView } from "@/hooks/useInView";
 
 const services = [
   {
-    number: "01",
     title: "Web Development",
     description:
       "From pixel-perfect landing pages to fully responsive, performant websites that convert visitors into customers.",
     tags: ["Landing Pages", "Responsive Design", "Performance"],
   },
   {
-    number: "02",
     title: "Tailored Solutions",
     description:
       "Custom features, integrations, and workflows designed around the way you actually work — not the other way around.",
     tags: ["Custom Features", "API Integrations", "Automation"],
   },
   {
-    number: "03",
     title: "Mobile App Development",
     description:
       "Native and cross-platform iOS and Android apps built for speed, reliability, and a great user experience.",
@@ -43,7 +40,8 @@ export function Services() {
               inView ? "in-view" : "",
             ].join(" ")}
           >
-            <span className="w-6 h-px bg-accent" aria-hidden="true" /> What We Do
+            <span className="w-6 h-px bg-accent" aria-hidden="true" /> What We
+            Do
           </p>
           <h2
             className={[
@@ -77,13 +75,13 @@ export function Services() {
                   inView ? "in-view" : "",
                   delays[i] ?? "delay-300",
                 ].join(" ")}
-                style={{ marginLeft: "-1.5rem", marginRight: "-1.5rem", paddingLeft: "1.5rem", paddingRight: "1.5rem" }}
+                style={{
+                  marginLeft: "-1.5rem",
+                  marginRight: "-1.5rem",
+                  paddingLeft: "1.5rem",
+                  paddingRight: "1.5rem",
+                }}
               >
-                {/* Large typographic number */}
-                <span className="font-display font-black text-4xl text-border group-hover:text-accent/30 transition-colors duration-200 select-none shrink-0 w-14">
-                  {service.number}
-                </span>
-
                 {/* Title + description */}
                 <div className="flex-1 min-w-0">
                   <h3 className="font-display font-bold text-foreground text-lg mb-1 group-hover:text-accent transition-colors duration-200">

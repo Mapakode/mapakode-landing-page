@@ -100,7 +100,7 @@ export function Hero() {
         {/* Headline */}
         <h1 className="font-display font-black tracking-tight leading-[1.06]">
           <span className="animate-hero-fade-up delay-100 block text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground mb-2">
-            You do Your Business.
+            You do Your Business,
           </span>
           <span className="animate-hero-fade-up delay-200 block text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-muted font-bold mb-2">
             We do the Code.

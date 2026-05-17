@@ -50,6 +50,8 @@ export function Navbar() {
               width={28}
               height={28}
               style={{ width: 32, height: "auto" }}
+              loading="eager"
+              priority
             />
             <span className="font-display text-base font-bold tracking-tight">
               <span className="text-accent">Mapa</span>
