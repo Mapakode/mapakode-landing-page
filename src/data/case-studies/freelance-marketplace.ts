@@ -45,12 +45,6 @@ export const freelanceMarketplace: CaseStudyData = {
         "A gamified reputation engine that tracks delivery consistency, client ratings, and revision rates. Higher scores unlock priority matching — giving top freelancers a compounding career advantage.",
     },
     {
-      icon: "ShieldCheck",
-      title: "Escrow Payments",
-      description:
-        "Funds are locked at project start and released on milestone approval. Budget surplus is automatically refunded. No payment disputes, no chasing invoices — trust baked into every transaction.",
-    },
-    {
       icon: "ListChecks",
       title: "Milestone Tracking",
       description:
