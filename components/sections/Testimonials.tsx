@@ -7,25 +7,16 @@ const testimonials = [
     header: "Exceeded Expectations",
     quote:
       "MapaKode exceeded our expectations with their reliable service and rapid turnaround on revisions. Their team's professionalism and commitment to quality made a real difference for us. Highly recommended!",
-    name: "P. Custodio",
-    project: "Curriculum Advising Management System",
-    initial: "C",
   },
   {
     header: "On Time & On Budget",
     quote:
       "MapaKode delivered exactly what we needed, on time and within budget. Their team was professional, responsive, and delivered a high-quality product that exceeded our expectations.",
-    name: "S. Cruz",
-    project: "Barangay Flood Evacuation Planning System",
-    initial: "C",
   },
   {
     header: "Clear & Efficient",
     quote:
       "MapaKode worked closely with us to deliver exactly what we needed, communicating clearly and moving efficiently throughout the project. The system looks good, is functional, and meets our requirements.",
-    name: "M. Tedeo",
-    project: "SSC Project Management System",
-    initial: "T",
   },
 ];
 
@@ -65,23 +56,6 @@ function TestimonialCard({
         <p className="text-muted text-sm leading-relaxed">{t.quote}</p>
       </div>
 
-      {/* Author */}
-      <div className="flex items-center gap-3 pt-4 border-t border-border mt-auto">
-        <div
-          className="w-9 h-9 rounded-full border border-border flex items-center justify-center shrink-0 bg-surface"
-          aria-hidden="true"
-        >
-          <span className="font-display font-black text-sm text-foreground">
-            {t.initial}
-          </span>
-        </div>
-        <div>
-          <p className="text-sm font-semibold text-foreground">{t.name}</p>
-          {t.project && (
-            <p className="text-xs text-muted">{t.project}</p>
-          )}
-        </div>
-      </div>
     </div>
   );
 }
@@ -111,7 +85,7 @@ export function Testimonials() {
           {testimonials.map((t, i) => {
             const delays = ["delay-100", "delay-200", "delay-300"];
             return (
-              <TestimonialCard key={t.name} t={t} delay={delays[i]} inView={inView} />
+              <TestimonialCard key={i} t={t} delay={delays[i]} inView={inView} />
             );
           })}
         </div>
